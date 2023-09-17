@@ -1,7 +1,7 @@
 #include  "main.h"
 
 /**
- * printf - takes unlimited arguments and returns number of char
+ * _printf - takes unlimited arguments and returns number of char
  * @format: string to print with formated output
  * @...: all arguments to go with formated string
  * Return: returns number of characters entered
