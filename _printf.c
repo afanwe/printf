@@ -1,4 +1,4 @@
-#include  "main.h"
+#include "main.h"
 
 /**
  * _printf - takes unlimited arguments and returns number of char
@@ -9,44 +9,52 @@
 
 int _printf(const char *format, ...)
 {
-	int printed_count = 0, i;
+	char c, *str;
+	int count = 0;
 
-	va_list arg_list;
+	va_list args;
+	va_start(args, format);
 
-	if (format == NULL)
-		return (-1);
-
-	va_start(arg_list, format);
-
-	for (i = 0; format[i] != '\0'; i++)
+	while (*format)
 	{
-		if (format[i] != '%')
-			putchar(format[i]);
-		if (format[i] == '%')
+		if (*format == '%')
 		{
-			if (format[i + 1] == 'c')
+			format++;
+			switch (*format)
 			{
-				putchar(va_arg(arg_list, int));
-				i++;
-			}
-			else if (format[i + 1] == 's')
-			{
-				char *str =  va_arg(arg_list, char*);
-				unsigned int str_count = 0;
+				case 'c':
+					c = va_arg(args, int);
 
-				while (str_count < strlen(str))
-				{
-					putchar(str[str_count]);
-					str_count++;
-				}
-				printed_count += str_count;
-				i++;
+					_putchar(c);
+					count++;
+					break;
+				case 's':
+					str = va_arg(args, char *);
+
+					while (*str != '\0')
+					{
+						_putchar(*str);
+						str++;
+						count++;
+					}
+					break;
+				case '%':
+					_putchar('%');
+					count++;
+					break;
+				default:
+					_putchar(*format);
+					count = count + 2;
+					break;
 			}
-			else if (format[i + 1] == '%')
-				putchar('%');
 		}
-		printed_count += 1;
+		else
+		{
+			_putchar(*format);
+			count++;
+		}
+		format++;
 	}
-	va_end(arg_list);
-	return (printed_count);
+	va_end(args);
+	return (count);
 }
