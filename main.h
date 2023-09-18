@@ -23,6 +23,9 @@ typedef struct format
 	int (*f)();
 } convert_match;
 
+int _reverse_str(va_list arg_list);
+int rot13(va_list arg);
+int _strlen(char *s);
 int _putchar(char c);
 int _puts(char *str);
 int _printf(const char *format, ...);
@@ -41,8 +44,6 @@ int printf_int(va_list args);
 int printf_dec(va_list args);
 int _strlen(char *s);
 int *_strcpy(char *dest, char *src);
-int _strlenc(const char *s);
-int rev_string(char *s);
 int _strlenc(const char *s);
 int printf_37(void);
 int printf_char(va_list val);
