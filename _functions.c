@@ -9,10 +9,12 @@
 
 int _puts(char *str)
 {
-	int count = 0;
-	
+	int count;
+
+	count = 0;
+
 	if (!str)
-		return(0);
+		return (0);
 
 	while (*str)
 	{
@@ -24,7 +26,7 @@ int _puts(char *str)
 }
 
 /**
- * _puchar - will write character c to stdout
+ * _putchar - will write character c to stdout
  * @c: character to print
  * Return: character
  */
