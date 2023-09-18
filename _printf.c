@@ -1,52 +1,52 @@
-#include "main.h"
+#include  "main.h"
 
 /**
  * _printf - takes unlimited arguments and returns number of char
- * @format: string to print with formatted output
+ * @format: string to print with formated output
  * @...: all arguments to go with formated string
  * Return: returns number of characters entered
  */
 
 int _printf(const char *format, ...)
 {
-	int index = 0, i;
+	int printed_count = 0, i;
+
 	va_list arg_list;
 
 	if (format == NULL)
 		return (-1);
+
 	va_start(arg_list, format);
-	while (*format != '\0')
+
+	for (i = 0; format[i] != '\0'; i++)
 	{
-		if (*format != '%')
+		if (format[i] != '%')
+			putchar(format[i]);
+		if (format[i] == '%')
 		{
-			write(1, format, 1);
-			index++;
-		}
-		else
-		{
-			format++;
-			if (*format == '%')
+			if (format[i + 1] == 'c')
 			{
-				write(1, format, 1);
-				index++;
+				putchar(va_arg(arg_list, int));
+				i++;
 			}
-			else if (*format == 's')
+			else if (format[i + 1] == 's')
 			{
-				char *str = va_arg(arg_list, char *);
+				char *str =  va_arg(arg_list, char*);
+				unsigned int str_count = 0;
 
-				index += (strlen(str));
-				write(1, str, strlen(str));
+				while (str_count < strlen(str))
+				{
+					putchar(str[str_count]);
+					str_count++;
+				}
+				printed_count += str_count;
+				i++;
 			}
-			else if (*format == 'c')
-			{
-				char c = va_arg(arg_list, int);
-
-				write(1, &c, 1);
-				index++;
-			}
+			else if (format[i + 1] == '%')
+				putchar('%');
 		}
-		format++;
+		printed_count += 1;
 	}
 	va_end(arg_list);
-	return (index);
+	return (printed_count);
 }
