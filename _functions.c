@@ -9,20 +9,17 @@
 
 int _puts(char *str)
 {
-	int count;
-
-	count = 0;
+	int i = 0;
 
 	if (!str)
 		return (0);
 
-	while (*str)
+	while (str[i] != '\0')
 	{
-		_putchar(*str);
-		count++;
-		str++;
+		_putchar(str[i]);
+		i++
 	}
-	return (count);
+	return (i);
 }
 
 /**
