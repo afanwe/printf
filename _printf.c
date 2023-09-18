@@ -13,7 +13,6 @@ int _printf(const char *format, ...)
 
 	if (!format || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
-
 	va_start(args_list, format);
 
 	while (*format)
@@ -41,11 +40,6 @@ int _printf(const char *format, ...)
 
 			count_print += _puts(str);
 			format++;
-		}
-		else
-		{
-			_putchar(*format);
-			count_print++;
 		}
 		format++;
 	}
