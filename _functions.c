@@ -8,7 +8,6 @@
  */
 
 int _puts(char *str)
-
 {
 	int count = 0;
 	
@@ -18,7 +17,7 @@ int _puts(char *str)
 	while (*str)
 	{
 		_putchar(*str);
-		count++
+		count++;
 		str++;
 	}
 	return (count);
@@ -31,7 +30,6 @@ int _puts(char *str)
  */
 
 int _putchar(char c)
-
 {
 	return (write(1, &c, 1));
 }

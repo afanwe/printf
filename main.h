@@ -23,6 +23,7 @@ typedef struct format
 	int (*f)();
 } convert_match;
 
+int _putchar(char c);
 int _puts(char *str);
 int _printf(const char *format, ...);
 int printf_pointer(va_list val);
