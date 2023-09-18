@@ -26,6 +26,7 @@ typedef struct format
 int _reverse_str(va_list arg_list);
 int rot13(va_list arg);
 int _strlen(char *s);
+int _specifier_match(char spec, va_list arg_list);
 int _putchar(char c);
 int _puts(char *str);
 int _printf(const char *format, ...);
