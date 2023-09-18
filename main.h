@@ -43,7 +43,6 @@ int printf_srev(va_list args);
 int printf_rot13(va_list args);
 int printf_int(va_list args);
 int printf_dec(va_list args);
-int _strlen(char *s);
 int *_strcpy(char *dest, char *src);
 int _strlenc(const char *s);
 int printf_37(void);
