@@ -69,8 +69,9 @@ int _printf(const char *format, ...)
 		{
 			unsigned int n = va_arg(args_list, unsigned int);
 
-			count += _print_binary(num);
+			count_print += _binary_print(n);
 			format++;
+		}
 		else
 		{
 			_putchar(*format);
