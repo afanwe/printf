@@ -38,27 +38,6 @@ int _printf(const char *format, ...)
 			count_print += _puts(str);
 			format++;
 		}
-		else if (*(format + 1) == 'R')
-		{
-			char *str = va_arg(args_list, char *);
-
-			count_print += rot13(str);
-			format++;
-		}
-		else if (*(format + 1) == 'r')
-		{
-			char *str = va_arg(args_list, char *);
-
-			count_print += _reverse_str(str);
-			format++;
-		}
-		else if (*(format + 1) == 'd' || *(format + 1) == 'i')
-		{
-			int num = va_arg(args_list, int);
-
-			count_print += num_printer(num);
-			format++;
-		}
 		else
 		{
 			count_print += _putchar(*format);
