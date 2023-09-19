@@ -1,4 +1,4 @@
-#include  "main.h"
+#include "main.h"
 
 /**
  * _printf - takes unlimited arguments and returns number of char
@@ -7,46 +7,79 @@
  * Return: returns number of characters entered
  */
 
+int _printf(const char *format, ...);
+
 int _printf(const char *format, ...)
 {
-	int printed_count = 0, i;
+	int count_print = 0;
+	va_list args_list;
 
-	va_list arg_list;
-
-	if (format == NULL)
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
+	va_start(args_list, format);
 
-	va_start(arg_list, format);
-
-	for (i = 0; format[i] != '\0'; i++)
+	while (*format && format)
 	{
-		if (format[i] != '%')
-			putchar(format[i]);
-		if (format[i] == '%')
+		if (*format != '%')
 		{
-			if (format[i + 1] == 'c')
-			{
-				putchar(va_arg(arg_list, int));
-				i++;
-			}
-			else if (format[i + 1] == 's')
-			{
-				char *str =  va_arg(arg_list, char*);
-				unsigned int str_count = 0;
-
-				while (str_count < strlen(str))
-				{
-					putchar(str[str_count]);
-					str_count++;
-				}
-				printed_count += str_count;
-				i++;
-			}
-			else if (format[i + 1] == '%')
-				putchar('%');
+			_putchar(*format);
+			count_print++;
 		}
-		printed_count += 1;
+		else if (*(format + 1) == 'c')
+		{
+			_putchar(va_arg(args_list, int));
+			count_print++;
+			format++;
+		}
+		else if (*(format + 1) == '%')
+		{
+			_putchar('%');
+			format++;
+			count_print++;
+		}
+		else if (*(format + 1) == 's')
+		{
+			char *str = va_arg(args_list, char *);
+
+			count_print += _puts(str);
+			format++;
+		}
+		else if (*(format + 1) == 'R')
+		{
+			char *str = va_arg(args_list, char *);
+
+			count_print += rot13(str);
+			format++;
+		}
+		else if (*(format + 1) == 'r')
+		{
+			char *str = va_arg(args_list, char *);
+
+			count_print += _reverse_str(str);
+			format++;
+		}
+		else if (*(format + 1) == 'i' || *(format + 1) == 'd')
+		{
+			int num = va_arg(args_list, int);
+
+			count_print += num_printer(num);
+			format++;
+		}
+		else if (*(format + 1) == 'b')
+		{
+			unsigned int n = va_arg(args_list, unsigned int);
+
+			count_print += _binary_print(n);
+			format++;
+		}
+		else
+		{
+			_putchar(*format);
+			count_print++;
+		}
+		format++;
 	}
-	va_end(arg_list);
-	return (printed_count);
+	va_end(args_list);
+	return (count_print);
 }
+
