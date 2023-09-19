@@ -8,6 +8,9 @@
  * @...: all arguments to go with formated string
  * Return: returns number of characters entered
  */
+
+int _printf(const char *format, ...);
+
 int _printf(const char *format, ...)
 {
 	int count_print = 0;
@@ -37,6 +40,27 @@ int _printf(const char *format, ...)
 			char *str = va_arg(args_list, char *);
 
 			count_print += _puts(str);
+			format++;
+		}
+		else if (*(format + 1) == 'R')
+		{
+			char *str = va_arg(args_list, char *);
+
+			count_print += rot13(str);
+			format++;
+		}
+		else if (*(format + 1) == 'r')
+		{
+			char *str = va_arg(args_list, char *);
+
+			count_print += _reverse_str(str);
+			format++;
+		}
+		else if (*(format + 1) == 'd' || *(format + 1) == 'i')
+		{
+			int num = va_arg(args_list, int);
+
+			count_print += num_printer(num);
 			format++;
 		}
 		else

@@ -23,12 +23,12 @@ typedef struct format
 	int (*f)();
 } convert_match;
 
-int _reverse_str(va_list arg_list);
-int rot13(va_list arg);
+int _reverse_str(char *str);
+int rot13(char *str);
 int _strlen(char *s);
-int _specifier_match(char spec, va_list arg_list);
 int _putchar(char c);
 int _puts(char *str);
+int num_printer(int num);
 int _printf(const char *format, ...);
 int printf_pointer(va_list val);
 int printf_hex_aux(unsigned long int num);
@@ -39,8 +39,6 @@ int printf_hex(va_list val);
 int printf_oct(va_list val);
 int printf_unsigned(va_list args);
 int printf_bin(va_list val);
-int printf_srev(va_list args);
-int printf_rot13(va_list args);
 int printf_int(va_list args);
 int printf_dec(va_list args);
 int *_strcpy(char *dest, char *src);
