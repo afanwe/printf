@@ -24,7 +24,7 @@ typedef struct format
 } convert_match;
 
 int _reverse_str(va_list arg_list);
-int rot13(va_list arg_list);
+int rot13(char *str);
 int _strlen(char *s);
 int _putchar(char c);
 int _puts(char *str);

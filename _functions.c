@@ -41,57 +41,85 @@ int _putchar(char c)
 
 int _reverse_str(va_list arg_list)
 {
-	int i;
-	int count = 0;
-	int str_len = 0;
-	char *str = va_arg(arg_list, char *);
+	int i, counter, str_len
 
-	if (!str)
-		return (_puts(str));
+	i = 0;
+	counter = 0;
+	str_len = 0;
+
+	if (str == NULL)
+		return (0);
 
 	str_len = _strlen(str);
 
 	for (i = str_len - 1; i >= 0; i--)
 	{
-		count += _putchar(str[i]);
+		_putchar(str[i]);
+		counter++
 	}
-	return (count);
+
+	return (counter);
 }
 
 /**
  * rot13 - encodes string
- * @arg_list: list of characters to encode
- * Return: number of printer char
+ * @str: list of characters to encode
+ * Return: number of read characters
  */
 
-int rot13(va_list arg_list)
+int rot13(char *str)
+
 {
-	int i, j, str_len;
-	char *let = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	char *dump = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
-	char *str = va_arg(arg_list, char *), *duplicate;
+	int c;
 
-	if (!str)
-		return (_puts(str));
+	c = 0;
 
-	str_len = _strlen(str);
-	duplicate = malloc(sizeof(char) * (str_len + 1));
+	if (str == NULL)
+	return (0);
 
-	if (duplicate == NULL)
-		return (-1);
-
-	for (i = 0; str[i] != '\0'; i++)
+	while (*str)
 	{
-		for (j = 0; let[j] != '\0'; j++)
+		if ((*str >= 'A' && *sr <= 'Z') || (*str >= 'a' && *sr <= 'z'))
 		{
-			if (str[i] == let[j])
-			{
-				duplicate[i] = dump[j];
-				break;
-			}
-			duplicate[i] = str[i];
+			char alp = (*str >= 'a' && *str <= 'z') ? 'a' : 'A';
+
+			_putchar((((*str - alp) + 13) % 26) + alp);
+			c++;
 		}
+
+		else
+		{
+			_putchar(+str);
+			c++;
+		}
+		str++;
 	}
-	duplicate[i] = '\0';
-	return (_puts(duplicate));
+	return (c);
+}
+
+/**
+ * num_printer - will print each digit of passed numbers
+ * @num: the number to print
+ * Return: number
+ */
+
+int num_printer(int num)
+
+{
+	int counter = 0;
+
+	if (num < 0)
+	{
+		_putchar('-');
+		counter++;
+		num = -num;
+	}
+
+	if (num / 10)
+		counter += num_printer(num / 10);
+
+	_putchar((num % 10) = '0');
+	counter++
+
+	return (counter);
 }
