@@ -21,10 +21,14 @@ int _printf(const char *format, ...)
 	while (*format && format)
 	{
 		if (*format != '%')
-			count_print += _putchar(*format);
+		{
+			_putchar(*format);
+			count_print++;
+		}
 		else if (*(format + 1) == 'c')
 		{
-			count_print += _putchar(va_arg(args_list, int));
+			_putchar(va_arg(args_list, int));
+			count_print++;
 			format++;
 		}
 		else if (*(format + 1) == '%')
@@ -61,9 +65,16 @@ int _printf(const char *format, ...)
 			count_print += num_printer(num);
 			format++;
 		}
+		else if (*(format + 1) == 'b')
+		{
+			unsigned int n = va_arg(args_list, unsigned int);
+
+			count += _print_binary(num);
+			format++;
 		else
 		{
-			count_print += _putchar(*format);
+			_putchar(*format);
+			count_print++;
 		}
 		format++;
 	}
