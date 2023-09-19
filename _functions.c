@@ -35,13 +35,13 @@ int _putchar(char c)
 
 /**
  * _reverse_str - prints a string in reverse
- * @arg_list: string to reverse
+ * @str: string to reverse
  * Return: number of char printered
  */
 
-int _reverse_str(va_list arg_list)
+int _reverse_str(char *str)
 {
-	int i, counter, str_len
+	int i, counter, str_len;
 
 	i = 0;
 	counter = 0;
@@ -55,7 +55,7 @@ int _reverse_str(va_list arg_list)
 	for (i = str_len - 1; i >= 0; i--)
 	{
 		_putchar(str[i]);
-		counter++
+		counter++;
 	}
 
 	return (counter);
@@ -68,7 +68,6 @@ int _reverse_str(va_list arg_list)
  */
 
 int rot13(char *str)
-
 {
 	int c;
 
@@ -79,7 +78,7 @@ int rot13(char *str)
 
 	while (*str)
 	{
-		if ((*str >= 'A' && *sr <= 'Z') || (*str >= 'a' && *sr <= 'z'))
+		if ((*str >= 'A' && *str <= 'Z') || (*str >= 'a' && *str <= 'z'))
 		{
 			char alp = (*str >= 'a' && *str <= 'z') ? 'a' : 'A';
 
@@ -89,7 +88,7 @@ int rot13(char *str)
 
 		else
 		{
-			_putchar(+str);
+			_putchar(*str);
 			c++;
 		}
 		str++;
@@ -104,7 +103,6 @@ int rot13(char *str)
  */
 
 int num_printer(int num)
-
 {
 	int counter = 0;
 
@@ -118,8 +116,8 @@ int num_printer(int num)
 	if (num / 10)
 		counter += num_printer(num / 10);
 
-	_putchar((num % 10) = '0');
-	counter++
+	_putchar((num % 10) + '0');
+	counter++;
 
 	return (counter);
 }
