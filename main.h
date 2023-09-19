@@ -26,6 +26,7 @@ typedef struct format
 int _reverse_str(char *str);
 int rot13(char *str);
 int _strlen(char *s);
+int _binary_print(unsigned int num);
 int _putchar(char c);
 int _puts(char *str);
 int num_printer(int num);
