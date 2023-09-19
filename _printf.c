@@ -9,8 +9,6 @@
  * Return: returns number of characters entered
  */
 
-int _printf(const char *format, ...);
-
 int _printf(const char *format, ...)
 {
 	int count_print = 0;
